@@ -8,16 +8,15 @@ let ArticleSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
-    trim:true
+    required: true
   },
   url: {
     type: String,
     required: true
   },
   comments: [{
-    type: Schema.Types.ObjectId,
-    ref: "comment"
+    ref: "comment",
+    type: Schema.Types.ObjectId
   }]
 })
 
