@@ -36,22 +36,19 @@ article{
   background-color: darkred
 }
 
-.delComment{
+.delete{
   position: absolute;
-  font-size: 1.5rem;
+  font-size: 17pt;
   top:0rem;
   right:.7rem;
   color:darkred;
 }
 
-.delComment:hover {
+.delete:hover {
   cursor: pointer;
 }
 
-
-
 .inp{
-  background-color: transparent !important;
   border-color: darkred;
   color: darkred !important;
 }

@@ -1,28 +1,24 @@
 const $ref = {
-    comments:$("#commentsSection"),
+    comments:$("#all-comments"),
   }
   
-  $(document).ready(function(){
-    $.ajax({
-      method: "GET",
-      url: "/scrape"
-    })
-    .then((data) => {
+  $(document).ready(() => {
+    $.ajax({method: "GET", url: "/scrape"}).then((data) => {
       console.log(data);
     })
   })
   
-  $(document).on("click", ".commentsBtn", function() {
+  $(document).on("click", "#com-btn", function() {
     console.log($(this).parent())
-    populateComments($(this).parent().attr("id"))
+    enable($(this).parent().attr("id"))
   })
   
   $(document).on("click", ".addCommentBtn", function(event) {
     event.preventDefault()
     let commentId = $(this).attr("id").replace("comment-","")
     let data= {
-      title: $("#commentTitle").val(),
-      text: $("#commentText").val()
+      title: $("#comment-name").val(),
+      text: $("#comment-info").val()
     }
   
     $.ajax({
@@ -30,15 +26,14 @@ const $ref = {
       url: `/articles/${commentId}`,
       data: data
     })
-        .then((data) => {
-            console.log(data)
-            $("#commentTitle").val()
-            $("#commentText").val()
-            populateComments(commentId)
+        .then(() => {
+            $("#comment-name").val()
+            $("#comment-info").val()
+            enable(commentId)
         })
   })
   
-  $(document).on("click", ".delComment", function() {
+  $(document).on("click", ".delete", function() {
     let data = {
       comment_id : $(this).data("comment"),
       article_id : $(this).data("article")
@@ -50,15 +45,15 @@ const $ref = {
     })
     .then((res) => {
       console.log(res)
-      populateComments(data.article_id)
+      enable(data.article_id)
     })
-    .catch((error) => {
-      console.log(error)
-      populateComments(data.article_id)
+    .catch((err) => {
+      console.log(err)
+      enable(data.article_id)
     })
   })
   
-  function populateComments(id){
+  function enable(id){
     $ref.comments.empty()
     $([document.documentElement, document.body]).animate({
       scrollTop: $ref.comments.offset().top - 75
@@ -74,7 +69,7 @@ const $ref = {
       if(data.comments){
         for(let comment of data.comments){
           commentString+=(`<div class="comment">`+
-                                  `<span class="delComment" data-article="${id}" data-comment="${comment._id}" aria-hidden="true">&times;</span>`+
+                                  `<span class="delete" data-article="${id}" data-comment="${comment._id}" aria-hidden="true">&times;</span>`+
                                   `<h4>${comment.title}</h4>`+
                                   `<p>${comment.text}</p>`+
                                `</div>`)
@@ -83,12 +78,12 @@ const $ref = {
   
       commentString+=(`<form>
         <div class="form-group">
-          <label for="commentTitle">Comment Title:</label>
-          <input type="text" maxlength="20" class="form-control inp" autocomplete="off" id="commentTitle" aria-describedby="newCommentTitle">
+          <label for="comment-name">User Name:</label>
+          <input type="text" maxlength="20" class="form-control inp" id="comment-name" aria-describedby="comment-name">
         </div>
         <div class="form-group">
-          <label for="commentText">Comment Text:</label>
-          <textarea type="text" maxlength="180" class="form-control inp"  autocomplete="off"id="commentText" aria-describedby="newCommentText"></textarea>
+          <label for="comment-info">Comment Text:</label>
+          <textarea type="text" maxlength="180" class="form-control inp" id="comment-info" aria-describedby="comment-info"></textarea>
         </div>
         <button type="submit" class="btn btn-fix addCommentBtn" id="comment-${id}">Submit</button>
       </form>`)
