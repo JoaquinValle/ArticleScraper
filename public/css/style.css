@@ -1,9 +1,5 @@
-body{
-  color: darkred;
-}
-
-.main{
-  margin-top:4.5rem;
+body {
+  font-family: 'Source Code Pro', monospace;
 }
 
 article{
@@ -30,14 +26,11 @@ article{
   color:darkred;
 }
 
-.delComment:hover,.delComment:active{
-  cursor: pointer;
-  color:#f1dec1;
-}
-
 .jumbotron{
   padding:3rem;
   background-color: white;
+  color: darkred;
+
 }
 
 .btn-outline-primary{
@@ -84,10 +77,4 @@ select.inputBox:focus::-ms-value {
 
 .modal-content{
   background-color: #1b2441;
-}
-
-@media (max-width: 767px){
-  .jumbotron{
-    padding:1.3rem 1rem;
-  }
 }
