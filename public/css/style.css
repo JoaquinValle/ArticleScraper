@@ -1,6 +1,5 @@
 body{
-  background-image: url("../assets/warlock-pattern.png");
-  color: #c3e7f1;
+  color: darkred;
 }
 
 .main{
@@ -28,7 +27,7 @@ article{
   font-size: 1.5rem;
   top:0rem;
   right:.7rem;
-  color:#9669d7;
+  color:darkred;
 }
 
 .delComment:hover,.delComment:active{
@@ -38,23 +37,30 @@ article{
 
 .jumbotron{
   padding:3rem;
-  background-color: #1b2441;
+  background-color: white;
 }
 
 .btn-outline-primary{
   margin-top:10px;
+  color: darkred;
+  border-color: darkred;
 }
 
 .btn-outline-primary:active.btn-outline-primary:hover.btn-outline-primary:focus{
   margin-top:10px;
   border-color: transparent;
-  color: #c3e7f1;
+  color: darkred;
+}
+
+.btn-outline-primary:hover {
+  color: white;
+  background-color: darkred
 }
 
 .inputBox{
   background-color: transparent !important;
-  border-color: #9669d7;
-  color: #c3e7f1 !important;
+  border-color: darkred;
+  color: darkred !important;
 }
 
 textarea.inputBox{
@@ -68,7 +74,7 @@ textarea.inputBox{
 
 .inputBox:active.inputBox:focus.inputBox:focus::-ms-value.inputBox:disabled.inputBox[readonly]{
   background-color: transparent;
-  border-color: #9669d7;
+  border-color: darkred;
 }
 
 select.inputBox:focus::-ms-value {

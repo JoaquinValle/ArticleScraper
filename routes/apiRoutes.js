@@ -51,8 +51,8 @@ module.exports = function(app,db) {
         db.Comment.create(req.body).then((response) => {
             return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push:{comments: response._id }}, { new: true });
         })
-        .then((response) => {
-            res.json(response)
+        .then((resp) => {
+            res.json(resp)
         })
         .catch((err) => {
             res.send(err)

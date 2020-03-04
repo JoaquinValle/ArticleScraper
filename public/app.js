@@ -27,7 +27,7 @@ const $ref = {
   
     $.ajax({
       method: "POST",
-      url: `/articles" + ${thisId}`,
+      url: `/articles/${thisId}`,
       data: data
     })
         .then((data) => {
@@ -90,7 +90,7 @@ const $ref = {
           <label for="commentText">Comment Text:</label>
           <textarea type="text" maxlength="180" class="form-control inputBox"  autocomplete="off"id="commentText" aria-describedby="newCommentText"></textarea>
         </div>
-        <button type="submit" class="btn btn-outline-primary addCommentBtn" id="comment-${thisId}">Submit</button>
+        <button type="submit" class="btn btn-outline-primary addCommentBtn" id="comment-${id}">Submit</button>
       </form>`)
       commentString+=(`</div>`)
       $ref.comments.append(commentString)
