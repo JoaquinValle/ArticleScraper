@@ -3,19 +3,37 @@ body {
 }
 
 article{
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  border: 1px solid #f1dec1;
-  border-radius: 5px;
+  margin-top: 25px;
+  padding: 30px;
+  border: 3px solid;
+  border-color: darkred;
+  border-radius: 25px;
+}
+
+.jumbotron{
+  background-color: white;
+  color: black
 }
 
 .comment{
-  margin-bottom: 1rem;
-  padding: .5rem;
-  border: 1px solid #f1dec1;
-  border-radius: 5px;
+  margin-top: 25px;
+  padding: 30px;
+  border: 2px solid darkred;
+  border-radius: 25px;
   position:relative;
   overflow: hidden;
+  justify-content: baseline
+}
+
+.btn-fix{
+  margin-top:10px;
+  color: darkred;
+  border-color: darkred;
+}
+
+.btn-fix:hover {
+  color: white;
+  background-color: darkred
 }
 
 .delComment{
@@ -26,55 +44,23 @@ article{
   color:darkred;
 }
 
-.jumbotron{
-  padding:3rem;
-  background-color: white;
-  color: darkred;
-
+.delComment:hover {
+  cursor: pointer;
 }
 
-.btn-outline-primary{
-  margin-top:10px;
-  color: darkred;
-  border-color: darkred;
-}
 
-.btn-outline-primary:active.btn-outline-primary:hover.btn-outline-primary:focus{
-  margin-top:10px;
-  border-color: transparent;
-  color: darkred;
-}
 
-.btn-outline-primary:hover {
-  color: white;
-  background-color: darkred
-}
-
-.inputBox{
+.inp{
   background-color: transparent !important;
   border-color: darkred;
   color: darkred !important;
 }
 
-textarea.inputBox{
+textarea.inp{
   resize: none;
   height:8.6rem;
 }
 
-.inputBox:hover{
-  border-color: #f1dec1;
-} 
-
-.inputBox:active.inputBox:focus.inputBox:focus::-ms-value.inputBox:disabled.inputBox[readonly]{
-  background-color: transparent;
-  border-color: darkred;
-}
-
-select.inputBox:focus::-ms-value {
-  color: #c3e7f1;
-  background-color: transparent;
-}
-
 .modal-content{
-  background-color: #1b2441;
+  background-color: black;
 }

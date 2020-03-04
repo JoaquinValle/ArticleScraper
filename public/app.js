@@ -7,19 +7,19 @@ const $ref = {
       method: "GET",
       url: "/scrape"
     })
-    .then(function(data) {
+    .then((data) => {
       console.log(data);
     })
   })
   
   $(document).on("click", ".commentsBtn", function() {
+    console.log($(this).parent())
     populateComments($(this).parent().attr("id"))
   })
   
-  // Add new comment
   $(document).on("click", ".addCommentBtn", function(event) {
     event.preventDefault()
-    let thisId = $(this).attr("id").replace("comment-","")
+    let commentId = $(this).attr("id").replace("comment-","")
     let data= {
       title: $("#commentTitle").val(),
       text: $("#commentText").val()
@@ -27,14 +27,14 @@ const $ref = {
   
     $.ajax({
       method: "POST",
-      url: `/articles/${thisId}`,
+      url: `/articles/${commentId}`,
       data: data
     })
         .then((data) => {
             console.log(data)
             $("#commentTitle").val()
             $("#commentText").val()
-            populateComments(thisId)
+            populateComments(commentId)
         })
   })
   
@@ -84,13 +84,13 @@ const $ref = {
       commentString+=(`<form>
         <div class="form-group">
           <label for="commentTitle">Comment Title:</label>
-          <input type="text" maxlength="20" class="form-control inputBox" autocomplete="off" id="commentTitle" aria-describedby="newCommentTitle">
+          <input type="text" maxlength="20" class="form-control inp" autocomplete="off" id="commentTitle" aria-describedby="newCommentTitle">
         </div>
         <div class="form-group">
           <label for="commentText">Comment Text:</label>
-          <textarea type="text" maxlength="180" class="form-control inputBox"  autocomplete="off"id="commentText" aria-describedby="newCommentText"></textarea>
+          <textarea type="text" maxlength="180" class="form-control inp"  autocomplete="off"id="commentText" aria-describedby="newCommentText"></textarea>
         </div>
-        <button type="submit" class="btn btn-outline-primary addCommentBtn" id="comment-${id}">Submit</button>
+        <button type="submit" class="btn btn-fix addCommentBtn" id="comment-${id}">Submit</button>
       </form>`)
       commentString+=(`</div>`)
       $ref.comments.append(commentString)
