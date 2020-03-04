@@ -2,11 +2,11 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 let ArticleSchema = new Schema({
-  headline: {
+  title: {
     type: String,
     required: true
   },
-  summary: {
+  description: {
     type: String,
     required: true,
     trim:true
@@ -14,12 +14,6 @@ let ArticleSchema = new Schema({
   url: {
     type: String,
     required: true
-  },
-  pdf: {
-    type: String,
-    required: true,
-    index:true,
-    unique: true
   },
   comments: [{
     type: Schema.Types.ObjectId,

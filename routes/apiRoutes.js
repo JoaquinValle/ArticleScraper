@@ -1,21 +1,23 @@
 const axios = require("axios")
 const cheerio = require("cheerio")
 
+
+
 module.exports = function(app,db) {
     
     app.get("/scrape", function(req, res) {
         axios.get("https://winefolly.com/blog/").then((response) => {
             const $ = cheerio.load(response.data)
-            $("article .row").each(function(i, element) {
+            $("article .row").each(function() {
                 let resArr = {};
-                let url = `https://winefolly.com/blog/${$(this).children("h2").children("a").attr("href")}`
+                let url = $(this).children(".col-md-6").children("h2").children("a").attr("href")
                 resArr.title = $(this).children(".col-md-6").children("h2").children("a").text().trim()
-                resArr.description = $(this).children(".col-md-6").text("p").text().trim()
+                resArr.description = $(this).children(".col-md-6").children("p").text().trim()
                 resArr.url = url
+                console.log(resArr)
                     axios.get(url).then((res) => {
                         let $ = cheerio.load(res.data)         
-                            db.Article.create(resArr)
-                            .then((res) => {
+                            db.Article.create(resArr).then((res) => {
                                 console.log(res)
                             })
                             .catch((err) => {
@@ -29,14 +31,13 @@ module.exports = function(app,db) {
 
     app.get("/articles", (req, res) => {
         db.Article.find({}).then((response) => {
-            res.json(response);
+            res.json(response)
         })
         .catch((err) => {
-            res.json(err);
-        });
-    });
+            res.json(err)
+        })
+    })
 
-    //Routes
     app.get("/articles/:id", (req, res) => {
         db.Article.findOne({ _id: req.params.id }).populate("comments").then((response) => {
             res.json(response)
@@ -58,7 +59,6 @@ module.exports = function(app,db) {
         })
     })
 
-    // Route for deleting a Comment
     app.delete("/articles", (req, res) => {
         console.log(`Deleting comment_id ${req.body.comment_id} from article_id ${req.body.article_id}`)
         db.Article.updateOne({_id:req.body.article_id},{$pull:{comments:req.body.comment_id}})

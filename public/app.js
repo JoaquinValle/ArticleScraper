@@ -45,7 +45,7 @@ const $ref = {
     }
     $.ajax({
       method: "DELETE",
-      url: "/articles/",
+      url: "/articles",
       data: data
     })
     .then((res) => {

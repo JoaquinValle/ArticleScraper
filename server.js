@@ -3,12 +3,12 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 
 // Require models
-var db = require("./models");
+let db = require("./models");
 
-var PORT =  process.env.PORT || 8080;
+let PORT =  process.env.PORT || 8080;
 
 // Initialize Express
-const app = express();
+let app = express();
 
 // Middleware
 app.use(logger("dev"));
@@ -26,8 +26,8 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://root:4omisIpt4@ds15724
 mongoose.connect(MONGODB_URI);
 
 // Routes
-require("./routes/htmlRoutes")(app,db);
-require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app, db);
 
 // Start the server
 app.listen(PORT, function() {

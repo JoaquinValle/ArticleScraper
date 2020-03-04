@@ -11,7 +11,7 @@ module.exports = (app) => {
             let hbsObject = {
                 articles: data.data
               }
-            console.log(hbsObject)
+            console.log("hbsObject: " + hbsObject)
             res.render("index", hbsObject)
         })
     })
