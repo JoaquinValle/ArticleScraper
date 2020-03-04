@@ -26,7 +26,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://root:4omisIpt4@ds15724
 mongoose.connect(MONGODB_URI);
 
 // Routes
-require("./routes/htmlRoutes")(app, db);
+require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app, db);
 
 // Start the server
